@@ -23,7 +23,6 @@ const App = () => {
       text: "This is my new note!",
       date: "30/04/2023",
     },
-    
   ]);
 
   const addNote = (text) => {
@@ -31,14 +30,23 @@ const App = () => {
     const newNote = {
       id: nanoid(),
       text: text,
-      date: date.toLocaleDateString()
-    }
-    const newNotes = [...notes , newNote];
+      date: date.toLocaleDateString(),
+    };
+    const newNotes = [...notes, newNote];
     setNotes(newNotes);
-  }
+  };
+  const deleteNote = (id) => {
+    // this function accept id for delete a note
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
+  };
   return (
     <div className="container">
-      <NotesList notes={notes} handleAddNote = {addNote} />
+      <NotesList 
+      notes={notes}
+      handleAddNote={addNote} 
+      handleDeleteNode = {deleteNote}
+      />
     </div>
   );
 };
